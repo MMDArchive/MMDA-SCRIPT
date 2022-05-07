@@ -167,11 +167,7 @@ class StyleFactory {
             object-fit: cover;
         }`;
     }
-    /**
-     * @param {{IndexGrid?: boolean; AltStyle?: boolean; DisableFilter?: boolean; }} options
-     */
     constructor(options) {
-        // Set options from json object
         for (let key in options) {
             if (options[key]) {
                 this[key] = options[key];
@@ -266,28 +262,21 @@ class StyleFactory {
     }
 }
 
-// Create colored text
 function createColoredText(text, color) {
     return `<span style="color: ${color}">${text}</span>`;
 }
 
-// Function to add text to console
 function consoleLog(text) {
     let console = document.querySelector(".mmda-console");
-    // div
     let div = document.createElement("div");
     div.innerHTML = text;
-    // Check if console exists
     if (console) {
         console.appendChild(div);
     } else {
-        // Create console
         let console = document.createElement("div");
         console.classList.add("mmda-console");
         console.appendChild(div);
         document.body.appendChild(console);
-
-        // Add close button
         let close = document.createElement("div");
         close.classList.add("mmda-console-close");
         close.innerHTML = "X";
@@ -312,19 +301,16 @@ function setAdmin() {
 (function () {
     'use strict';
     isConsoleOpen = localStorage.getItem("Console") == "true";
-    // If ctrl and l pressed open a console
     document.addEventListener("keydown", (e) => {
 
         if (e.ctrlKey && e.key == "l") {
             e.preventDefault();
             if (localStorage.getItem("Console")) {
                 localStorage.removeItem("Console");
-                // close the console and remove it from the DOM if it exists
                 let console = document.querySelector(".mmda-console");
                 if (console) {
                     isConsoleOpen = false;
                     consoleLog(`[${createColoredText("Console", "green")}] Console will automatically close in 5 seconds...`);
-                    // Wait 3 seconds
                     setTimeout(() => {
                         console.remove();
                     }, 5000);
@@ -337,10 +323,8 @@ function setAdmin() {
                     consoleLog(`[${createColoredText("Console", "green")}] Console opened!`);
                 }
             }
-            // Check if console is already open
         }
     });
-    // Auto open the console if it is set
     if (localStorage.getItem("Console")) {
         consoleLog(`[${createColoredText("Console", "green")}] Console opened!`);
     }
@@ -357,22 +341,17 @@ function setAdmin() {
     });
     style.createStyle();
 
-    // Forum
     if (window.location.href.startsWith("https://mmda.booru.org/index.php?page=forum&s=view&id=")) {
         $(".post").forEach(post => {
             post.querySelector("h6.author a:nth-child(2)")?.addEventListener("contextmenu", e => {
-                // Delete old menu if there is one
                 if (document.body.querySelector(".mmda-menu")) {
                     document.body.querySelector(".mmda-menu").remove();
                 }
-                // Prevent the default menu from showing
                 e.preventDefault();
                 e.stopPropagation();
-                // Create the menu
                 if (e.target != null) {
                     const user = e.target.textContent;
                     const posLeft = e.clientX;
-                    // mouse position relative to the page with scroll offset
                     const posTop = e.clientY + window.scrollY;
                     const menu = document.createElement("div");
                     menu.classList.add("mmda-menu");
@@ -389,7 +368,6 @@ function setAdmin() {
                     mention.addEventListener("click", () => {
                         const textarea = document.querySelector("#reply_box");
                         if (textarea != null) {
-                            // Add value at cursor position
                             const cursorPosition = textarea.selectionStart;
                             const textBefore = textarea.value.substring(0, cursorPosition);
                             const textAfter = textarea.value.substring(cursorPosition);
@@ -423,10 +401,8 @@ function setAdmin() {
             });
         })
     }
-    // Options
     if (window.location.href === "https://mmda.booru.org/index.php?page=account-options") {
         let container = $(".option table tbody")[0];
-        // Create new tr with label and checkbox
         let tr = document.createElement("tr");
         let td = document.createElement("td");
         td.innerText = "Alt Style";
@@ -444,8 +420,6 @@ function setAdmin() {
         if (isConsoleOpen) {
             consoleLog("[UI] Alt Style added!");
         }
-
-        // Create new tr with label and checkbox
         tr = document.createElement("tr");
         td = document.createElement("td");
         td.innerText = "Index Grid";
@@ -455,7 +429,6 @@ function setAdmin() {
         checkbox.type = "checkbox";
         checkbox.checked = localStorage.getItem("IndexGrid") === "true";
         checkbox.addEventListener("change", e => {
-            // Save value to storage as a string
             localStorage.setItem("IndexGrid", e.target.checked.toString());
         });
         td.appendChild(checkbox);
@@ -464,14 +437,10 @@ function setAdmin() {
         if (isConsoleOpen) {
             consoleLog("[UI] Index Grid added!");
         }
-
-        // Create new tr with label and checkbox
-        // If localstorage admin is true, show the option
         if (localStorage.getItem("Admin") === "true") {
             tr = document.createElement("tr");
             td = document.createElement("td");
             td.innerText = "Admin Mode";
-            // Add tooltip to td
             td.title = "This is intended for admins only, normal users will not be able to use this feature.";
             tr.appendChild(td);
             td = document.createElement("td");
@@ -479,7 +448,6 @@ function setAdmin() {
             checkbox.type = "checkbox";
             checkbox.checked = localStorage.getItem("AdminMode") === "true";
             checkbox.addEventListener("change", e => {
-                // Save value to storage as a string
                 localStorage.setItem("AdminMode", e.target.checked.toString());
             });
             td.appendChild(checkbox);
@@ -489,8 +457,6 @@ function setAdmin() {
                 consoleLog("[UI] Admin Mode added!");
             }
         }
-
-        // Create new tr with label and checkbox
         tr = document.createElement("tr");
         td = document.createElement("td");
         td.innerText = "Disable filter";
@@ -500,7 +466,6 @@ function setAdmin() {
         checkbox.type = "checkbox";
         checkbox.checked = localStorage.getItem("DisableFilter") === "true";
         checkbox.addEventListener("change", e => {
-            // Save value to storage as a string
             localStorage.setItem("DisableFilter", e.target.checked.toString());
         }
         );
@@ -510,10 +475,6 @@ function setAdmin() {
         if (isConsoleOpen) {
             consoleLog("[UI] Disable Filter added!");
         }
-
-
-
-        // Create new tr with label and Button
         tr = document.createElement("tr");
         td = document.createElement("td");
         td.innerText = "Re-Initialize";
@@ -532,8 +493,6 @@ function setAdmin() {
         if (isConsoleOpen) {
             consoleLog("[UI] Re-Initialize added!");
         }
-
-        // Create new tr with label and code
         tr = document.createElement("tr");
         td = document.createElement("td");
         td.innerText = "Info";
@@ -549,17 +508,13 @@ function setAdmin() {
         tr.appendChild(td);
         container.appendChild(tr);
     }
-    // Post
     if (window.location.href.startsWith("https://mmda.booru.org/index.php?page=post&s=view&id=")) {
         let s = $("#tag_list")[0];
-        // replace all http text with a link
         s.innerHTML = s.innerHTML.replace(/\bhttps?\S+/g, (match) => {
             return `<a href="${match}" target="_blank">${match}</a>`;
         });
 
         s = $("#note-container")[0];
-        // replace all http on normal text with a link that is not an img tag
-
         if (isConsoleOpen) {
             consoleLog(`[${createColoredText("UI", "green")}] Replaced http/https links.`);
         }
