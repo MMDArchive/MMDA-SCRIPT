@@ -1,0 +1,218 @@
+body.alt {
+  background-color: #2c3034;
+  color: white;
+}
+body.alt .sidebar .space {
+  color: white;
+}
+body.alt #post-view > b,
+body.alt #post-view > #psc {
+  color: white;
+}
+body.alt #tag_list h5 {
+  color: white;
+}
+body.alt #paginator > b {
+  color: white;
+}
+body.alt #user-index > p {
+  color: white;
+}
+body.alt .highlightable tr {
+  color: white;
+}
+body.alt body {
+  color: white;
+}
+body.alt .highlightable ~ form {
+  color: white;
+}
+body.alt #note-container {
+  color: #7e7e7e;
+}
+body.alt #tag_list {
+  overflow-y: auto;
+  overflow-wrap: break-word;
+}
+body.alt #tag_list > ul > li span a[href^="index.php?page=post&s=list&tags=by"] {
+  color: #00ff00 !important;
+}
+body.alt #tag_list > ul {
+  color: white;
+}
+body.alt #tag_list > ul > li:last-child {
+  display: none;
+}
+@media screen and (max-width: 800px) {
+  body.alt #tag_list {
+    overflow-x: hidden;
+    width: calc(100% + 15px) !important;
+  }
+  body.alt .sidebar {
+    width: 100% !important;
+    margin-right: 0 !important;
+    float: none !important;
+    order: 2;
+  }
+  body.alt .content {
+    order: 1;
+    width: 100% !important;
+  }
+  body.alt #post-list {
+    display: flex;
+    flex-direction: column;
+  }
+  body.alt .content > div {
+    margin-bottom: 0 !important;
+  }
+}
+body.alt .quote {
+  color: black;
+}
+body.alt .divTable {
+  display: none;
+}
+body.alt :root {
+  --input-border: 8px;
+}
+body.alt .content > div > div:nth-child(6) {
+  margin-top: 0 !important;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+}
+body.alt .sidebar .space input:nth-child(1) {
+  border-top-left-radius: var(--input-border);
+  border-top-right-radius: var(--input-border);
+}
+body.alt .sidebar .space input:nth-child(3) {
+  border-bottom-left-radius: var(--input-border);
+  border-bottom-right-radius: var(--input-border);
+}
+body.alt .sidebar .space input {
+  width: 200px !important;
+  box-sizing: border-box;
+  border: none;
+  padding: 3px;
+  text-align: center;
+  outline: none;
+  margin-top: 0 !important;
+}
+body.alt .sidebar .space form br,
+body.alt .sidebar .space small {
+  display: none !important;
+}
+body.alt .pending-tag {
+  background: #d6d6ff !important;
+  color: black !important;
+}
+body.alt .highlightable tr:hover {
+  background: #00c8ff !important;
+  color: black;
+}
+body.alt .highlightable {
+  border-spacing: 0;
+  border-collapse: separate;
+}
+body.alt .pending-tag td:nth-child(3) {
+  position: relative;
+}
+body.alt .pending-tag td:nth-child(3):after {
+  content: "Pending";
+}
+
+body.filterOff .thumb a {
+  display: block !important;
+}
+
+body.grid .thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 130px !important;
+  height: 130px !important;
+}
+body.grid .thumb img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+}
+
+.mmda-menu-title {
+  background-color: #0077ff;
+  padding: 5px;
+  padding-right: 25px;
+}
+
+.mmda-menu-item {
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mmda-menu-item:hover {
+  background-color: #234567;
+}
+
+.mmda-menu {
+  position: absolute;
+  background-color: #123456;
+}
+
+.mmda-button {
+  cursor: pointer;
+  padding: 5px;
+  background-color: #123456;
+  color: white;
+}
+.no-outline {
+  outline: none;
+}
+
+.no-resize {
+  resize: none;
+}
+.checkbox{
+    width: 40px;
+    height: 20px;
+    background: #43455c;
+    border-radius: 20px;
+    position: relative;
+}
+
+.checkbox-label{
+    width: 18px;
+    height: 18px;
+    margin: 1px;
+    background: white;
+    position: absolute;
+    padding: 0;
+    border-radius: 20px;
+    box-sizing: border-box;
+    left: 0;
+    transition: .3s;
+}
+.checkbox input{
+    display: none;
+}
+
+.checkbox input:checked + .checkbox-label{
+    background: greenyellow;
+    left: 20px;
+}
+
+#console-input{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    font-size: 20px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
